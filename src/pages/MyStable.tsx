@@ -3,6 +3,8 @@ import Navbar from '../components/Navbar';
 import HorseCard from '../components/HorseCard';
 import TabbedSection from '../components/TabbedSection';
 import PromoBlock from '../components/PromoBlock';
+import { PrivyAuthProvider, LoginButton } from '../components/PrivyAuthProvider';
+import { usePrivy } from '@privy-io/react-auth';
 
 /**
  * Dashboard page for owners. Displays an overview of the user's horses,
@@ -10,7 +12,7 @@ import PromoBlock from '../components/PromoBlock';
  * Studios. The navbar is shared with the rest of the site. No extra
  * copy beyond what is specified should appear here.
  */
-export default function MyStable() {
+function MyStableContent() {
   const horses = [
     {
       name: 'Zeddiani',
@@ -58,6 +60,19 @@ export default function MyStable() {
     },
   ];
 
+  const { ready, authenticated } = usePrivy();
+  if (!ready) return null;
+  if (!authenticated) {
+    return (
+      <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center">
+        <Navbar />
+        <div className="mt-32 text-center">
+          <h2 className="text-2xl font-bold mb-4">Sign in to access MyStable</h2>
+          <LoginButton />
+        </div>
+      </div>
+    );
+  }
   return (
     <div className="bg-black text-white min-h-screen">
       <Navbar />
@@ -89,4 +104,8 @@ export default function MyStable() {
       </section>
     </div>
   );
+}
+
+export default function MyStable() {
+  return <MyStableContent />;
 }
