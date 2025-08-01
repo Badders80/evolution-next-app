@@ -3,8 +3,7 @@ import Navbar from '../components/Navbar';
 import HorseCard from '../components/HorseCard';
 import TabbedSection from '../components/TabbedSection';
 import PromoBlock from '../components/PromoBlock';
-import { PrivyAuthProvider, LoginButton } from '../components/PrivyAuthProvider';
-import { usePrivy } from '@privy-io/react-auth';
+import { LoginButton, useAuth } from '../components/FutureverseAuthProvider';
 
 /**
  * Dashboard page for owners. Displays an overview of the user's horses,
@@ -60,15 +59,14 @@ function MyStableContent() {
     },
   ];
 
-  const { ready, authenticated } = usePrivy();
-  if (!ready) return null;
-  if (!authenticated) {
+  const { userSession } = useAuth();
+  if (!userSession) {
     return (
       <div className="bg-black text-white min-h-screen flex flex-col items-center justify-center">
         <Navbar />
         <div className="mt-32 text-center">
           <h2 className="text-2xl font-bold mb-4">Sign in to access MyStable</h2>
-          <LoginButton />
+          <LoginButton label="Login to MyStable" />
         </div>
       </div>
     );

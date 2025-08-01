@@ -1,5 +1,5 @@
 import React from 'react';
-import { LoginButton } from './PrivyAuthProvider';
+import { LoginButton } from './FutureverseAuthProvider';
 
 /**
  * Closing call‑to‑action inviting users to access the MyStable
@@ -18,19 +18,17 @@ export default function MyStableSection() {
         <p className="text-graytext text-lg mb-10">
           Manage your ownership, monitor your assets, and stay connected — simply, securely, and all in one spot.
         </p>
-        <LoginButton
-          onLogin={() => {
-            // If already authenticated, go to /mystable
-            if (window.location.pathname !== '/mystable') {
-              window.location.href = '/mystable';
-            }
-          }}
-        >
-          <span className="inline-flex items-center border border-gold text-gold px-6 py-2 text-sm tracking-wide hover:bg-gold hover:text-black transition">
-            Enter MyStable
-            <span className="ml-3 text-xl">›</span>
-          </span>
-        </LoginButton>
+        <div className="inline-block">
+          <LoginButton
+            label="Enter MyStable"
+            onLogin={() => {
+              // If already authenticated, go to /mystable
+              if (window.location.pathname !== '/mystable') {
+                window.location.href = '/mystable';
+              }
+            }}
+          />
+        </div>
       </div>
     </section>
   );

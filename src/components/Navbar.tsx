@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import logo from '../assets/2.png';
-import { LoginButton } from './PrivyAuthProvider';
-import { usePrivy } from '@privy-io/react-auth';
+import { LoginButton, useAuth } from './FutureverseAuthProvider';
 
 /**
  * The navigation bar appears at the top of every page. It uses a dark
@@ -12,7 +11,7 @@ import { usePrivy } from '@privy-io/react-auth';
  */
 export default function Navbar() {
   const [open, setOpen] = useState(false);
-  const { ready, authenticated, user } = usePrivy ? usePrivy() : { ready: false, authenticated: false, user: null };
+  const { userSession } = useAuth();
 
   return (
     <nav className="fixed top-0 inset-x-0 z-50 bg-black border-b border-gray-800">
@@ -35,7 +34,7 @@ export default function Navbar() {
           <a href="/#mission" className="hover:text-gold transition-colors">Our Mission</a>
           <a href="/#about" className="hover:text-gold transition-colors">About</a>
           <a href="/#innovation" className="hover:text-gold transition-colors">Innovation</a>
-          {ready && !authenticated ? (
+          {!userSession ? (
             <LoginButton>
               <span className="hover:text-gold transition-colors">MyStable</span>
             </LoginButton>
@@ -44,14 +43,12 @@ export default function Navbar() {
           )}
         </div>
         <div className="hidden md:flex items-center space-x-6">
-          {ready && authenticated ? (
+          {userSession ? (
             <LoginButton />
           ) : (
             <>
-              <LoginButton>SIGN IN</LoginButton>
-              <LoginButton>
-                <span className="border border-gold text-gold px-4 py-1 rounded-sm text-sm hover:bg-gold hover:text-black transition">GET STARTED</span>
-              </LoginButton>
+              <LoginButton label="SIGN IN" />
+              <LoginButton label="GET STARTED" />
             </>
           )}
         </div>
@@ -85,14 +82,12 @@ export default function Navbar() {
           <a href="/#mystable" className="block" onClick={() => setOpen(false)}>
             MyStable
           </a>
-          {ready && authenticated ? (
+          {userSession ? (
             <LoginButton />
           ) : (
             <>
-              <LoginButton>SIGN IN</LoginButton>
-              <LoginButton>
-                <span className="block border border-gold text-gold text-center py-2 rounded-sm">GET STARTED</span>
-              </LoginButton>
+              <LoginButton label="SIGN IN" />
+              <LoginButton label="GET STARTED" />
             </>
           )}
         </div>
