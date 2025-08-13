@@ -21,12 +21,6 @@ export default function MyStableSection() {
         <div className="inline-block">
           <LoginButton
             label="Enter MyStable"
-            onLogin={() => {
-              // If already authenticated, go to /mystable
-              if (window.location.pathname !== '/mystable') {
-                window.location.href = '/mystable';
-              }
-            }}
           />
         </div>
       </div>

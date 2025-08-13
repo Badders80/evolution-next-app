@@ -31,9 +31,30 @@ export default function Navbar() {
         </button>
         {/* Desktop navigation */}
         <div className="hidden md:flex items-center space-x-8">
-          <a href="/#mission" className="hover:text-gold transition-colors">Our Mission</a>
-          <a href="/#about" className="hover:text-gold transition-colors">About</a>
-          <a href="/#innovation" className="hover:text-gold transition-colors">Innovation</a>
+          <button 
+            className="hover:text-gold transition-colors bg-transparent border-none text-white cursor-pointer"
+            onClick={() => {
+              window.location.replace('/#mission');
+            }}
+          >
+            Our Mission
+          </button>
+          <button 
+            className="hover:text-gold transition-colors bg-transparent border-none text-white cursor-pointer"
+            onClick={() => {
+              window.location.replace('/#about');
+            }}
+          >
+            About
+          </button>
+          <button 
+            className="hover:text-gold transition-colors bg-transparent border-none text-white cursor-pointer"
+            onClick={() => {
+              window.location.replace('/#innovation');
+            }}
+          >
+            Innovation
+          </button>
           {!userSession ? (
             <LoginButton>
               <span className="hover:text-gold transition-colors">MyStable</span>
@@ -70,16 +91,34 @@ export default function Navbar() {
       {/* Mobile dropdown */}
       {open && (
         <div className="md:hidden px-4 pb-4 space-y-2 bg-black border-b border-gray-800">
-          <a href="/#mission" className="block" onClick={() => setOpen(false)}>
+          <button 
+            className="block text-left bg-transparent border-none text-white cursor-pointer w-full"
+            onClick={() => {
+              setOpen(false);
+              window.location.replace('/#mission');
+            }}
+          >
             Our Mission
-          </a>
-          <a href="/#about" className="block" onClick={() => setOpen(false)}>
+          </button>
+          <button 
+            className="block text-left bg-transparent border-none text-white cursor-pointer w-full"
+            onClick={() => {
+              setOpen(false);
+              window.location.replace('/#about');
+            }}
+          >
             About
-          </a>
-          <a href="/#innovation" className="block" onClick={() => setOpen(false)}>
+          </button>
+          <button 
+            className="block text-left bg-transparent border-none text-white cursor-pointer w-full"
+            onClick={() => {
+              setOpen(false);
+              window.location.replace('/#innovation');
+            }}
+          >
             Innovation
-          </a>
-          <a href="/#mystable" className="block" onClick={() => setOpen(false)}>
+          </button>
+          <a href="/mystable" className="block" onClick={() => setOpen(false)}>
             MyStable
           </a>
           {userSession ? (

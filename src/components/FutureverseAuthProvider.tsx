@@ -2,7 +2,15 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FutureverseAuthProvider } from '@futureverse/auth-react';
 import { FutureverseAuthClient } from '@futureverse/auth-react/auth';
-import { AuthUiProvider, DefaultTheme, CustodialAuthButton } from '@futureverse/auth-ui';
+import { 
+  AuthUiProvider, 
+  DefaultTheme, 
+  CustodialAuthButton,
+  Avatar,
+  Button,
+  Card,
+  Typography
+} from '@futureverse/auth-ui';
 import { useAuth } from '@futureverse/auth-react';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
@@ -83,6 +91,12 @@ export function LoginButton({ onLogin, onLogout, children, label }: LoginButtonP
 
   // Custom auth trigger that works
   const handleAuth = async () => {
+    // If user is already signed in and this is "Enter MyStable", navigate to MyStable
+    if (userSession && label === 'Enter MyStable') {
+      window.location.href = '/mystable';
+      return;
+    }
+    
     console.log('Custom auth triggered!');
     try {
       await authClient.signInPass({});
@@ -93,24 +107,70 @@ export function LoginButton({ onLogin, onLogout, children, label }: LoginButtonP
   };
 
   if (userSession) {
+    // Debug log to see what user data is available
+    console.log('UserSession object:', userSession);
+    console.log('User profile:', userSession.user?.profile);
+    
+    // Extract user name information with type assertion
+    const profile = userSession.user?.profile as any;
+    let displayName = 'User';
+    
+    // Try different name fields in order of preference
+    if (profile?.name && typeof profile.name === 'string') {
+      displayName = profile.name;
+    } else if (profile?.displayName && typeof profile.displayName === 'string') {
+      displayName = profile.displayName;
+    } else if (profile?.given_name && typeof profile.given_name === 'string') {
+      // Google OAuth standard field
+      displayName = profile.given_name;
+    } else if (profile?.firstName && typeof profile.firstName === 'string') {
+      displayName = profile.firstName;
+    } else if (profile?.given_name && profile?.family_name && 
+               typeof profile.given_name === 'string' && typeof profile.family_name === 'string') {
+      // Google OAuth standard fields
+      displayName = `${profile.given_name} ${profile.family_name}`.trim();
+    } else if (profile?.firstName && profile?.lastName && 
+               typeof profile.firstName === 'string' && typeof profile.lastName === 'string') {
+      displayName = `${profile.firstName} ${profile.lastName}`.trim();
+    } else if (profile?.email && typeof profile.email === 'string') {
+      // Extract a friendly name from email
+      const emailPart = profile.email.split('@')[0];
+      // Try to make it more readable (e.g., "john.doe" becomes "John Doe")
+      if (emailPart.includes('.')) {
+        displayName = emailPart.split('.').map((part: string) => 
+          part.charAt(0).toUpperCase() + part.slice(1).toLowerCase()
+        ).join(' ');
+      } else {
+        displayName = emailPart.charAt(0).toUpperCase() + emailPart.slice(1).toLowerCase();
+      }
+    }
+    
     return (
-      <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'white' }}>
-        <span>Signed in as {userSession.user?.profile?.email || 'User'}</span>
-        <button 
-          type="button" 
-          onClick={handleLogout} 
+      <div style={{ display: 'flex', alignItems: 'center', gap: '0.75rem', color: 'white' }}>
+        <Avatar 
+          size="sm"
+          name={displayName}
+        />
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <Typography style={{ color: 'white', margin: 0, fontSize: '14px', fontWeight: 500 }}>
+            {displayName}
+          </Typography>
+          <Typography style={{ color: '#9ca3af', margin: 0, fontSize: '12px' }}>
+            {userSession.eoa ? `${userSession.eoa.slice(0, 6)}...${userSession.eoa.slice(-4)}` : 'Connected'}
+          </Typography>
+        </div>
+        <Button 
+          variant="secondary"
+          onClick={handleLogout}
           style={{ 
             marginLeft: '0.5rem',
-            padding: '0.25rem 0.5rem',
-            border: '1px solid #d4a964',
-            backgroundColor: 'transparent',
+            borderColor: '#d4a964',
             color: '#d4a964',
-            borderRadius: '0.125rem',
-            cursor: 'pointer'
+            backgroundColor: 'transparent'
           }}
         >
           Sign out
-        </button>
+        </Button>
       </div>
     );
   }
@@ -172,7 +232,8 @@ export function LoginButton({ onLogin, onLogout, children, label }: LoginButtonP
   };
 
   return (
-    <button
+    <Button
+      variant="secondary"
       onClick={handleAuth}
       style={getButtonStyles()}
       onMouseEnter={getHoverStyles}
@@ -186,9 +247,17 @@ export function LoginButton({ onLogin, onLogout, children, label }: LoginButtonP
       ) : (
         label || children || 'Sign in'
       )}
-    </button>
+    </Button>
   );
 }
 
 // Export useAuth hook for convenience
 export { useAuth } from '@futureverse/auth-react';
+
+// Export Futureverse UI components for use throughout the app
+export { 
+  Avatar,
+  Button,
+  Card,
+  Typography
+} from '@futureverse/auth-ui';
