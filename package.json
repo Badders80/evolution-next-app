@@ -2,14 +2,13 @@
   "name": "new-build1",
   "version": "1.0.0",
   "private": true,
-
   "type": "module",
-    "scripts": {
-      "dev": "next dev",
-      "build": "next build",
-      "start": "next start",
-      "lint": "next lint"
-    },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
   "dependencies": {
     "@futureverse/auth-react": "^4.2.2",
     "@futureverse/auth-ui": "^0.17.0",
@@ -21,7 +20,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "viem": "^2.0.0",
-    "wagmi": "^2.16.1"
+    "wagmi": "^2.16.1",
+    "webpack": "^5.101.3"
   },
   "devDependencies": {
     "@types/react": "^18.2.14",
