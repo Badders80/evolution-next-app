@@ -1,0 +1,51 @@
+'use client';
+
+import '../styles/globals.css';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { WagmiProvider } from 'wagmi';
+import { FutureverseAuthProvider } from '@futureverse/auth-react';
+import { AuthUiProvider, DefaultTheme } from '@futureverse/auth-ui';
+import { createConfig, http } from 'wagmi';
+import { mainnet, sepolia } from 'wagmi/chains';
+
+const wagmiConfig = createConfig({
+  chains: [mainnet, sepolia],
+  transports: {
+    [mainnet.id]: http(),
+    [sepolia.id]: http(),
+  },
+});
+
+const queryClient = new QueryClient();
+
+const themeConfig = {
+  ...DefaultTheme,
+  defaultAuthOption: 'custodial',
+  colors: DefaultTheme.colors,
+  font: DefaultTheme.font,
+  borderRadius: DefaultTheme.borderRadius,
+};
+
+// You may need to update these to use NEXT_PUBLIC_ env vars
+const authClient = {
+  clientId: process.env.NEXT_PUBLIC_FUTUREVERSE_CLIENT_ID || 'Ug3k_XbN1wXZlPDvgK_Ge',
+  environment: process.env.NEXT_PUBLIC_FUTUREVERSE_ENVIRONMENT || 'staging',
+  redirectUri: process.env.NEXT_PUBLIC_REDIRECT_URI || 'http://localhost:3000/',
+  postLogoutRedirectUri: process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI || 'http://localhost:3000/',
+};
+
+function MyApp({ Component, pageProps }) {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <WagmiProvider config={wagmiConfig}>
+        <FutureverseAuthProvider authClient={authClient}>
+          <AuthUiProvider authClient={authClient} themeConfig={themeConfig}>
+            <Component {...pageProps} />
+          </AuthUiProvider>
+        </FutureverseAuthProvider>
+      </WagmiProvider>
+    </QueryClientProvider>
+  );
+}
+
+export default MyApp;
