@@ -1,6 +1,6 @@
-
 'use client';
 
+import { ReactQueryProvider } from '@/providers/ReactQueryProvider';
 import { FutureverseAuthProvider, createAuthentication } from '@futureverse/auth-react';
 import React from 'react';
 
@@ -11,10 +11,14 @@ const authClient = createAuthentication({
   postLogoutRedirectUri: process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI!,
 });
 
+console.log("Client ID:", process.env.NEXT_PUBLIC_FUTUREVERSE_CLIENT_ID);
+
 export function Providers({ children }: { children: React.ReactNode }) {
   return (
-    <FutureverseAuthProvider authClient={authClient}>
-      {children}
-    </FutureverseAuthProvider>
+    <ReactQueryProvider>
+      <FutureverseAuthProvider authClient={authClient}>
+        {children}
+      </FutureverseAuthProvider>
+    </ReactQueryProvider>
   );
 }
