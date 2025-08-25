@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 interface ImportMetaEnv {
-  // Next.js does not use import.meta.env or VITE_ variables. Remove these declarations.
+// DEPRECATED: Vite-specific type declarations. This file can be deleted.
 }
 
 interface ImportMeta {

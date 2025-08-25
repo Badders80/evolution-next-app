@@ -4,7 +4,13 @@ import '../styles/globals.css';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { WagmiProvider } from 'wagmi';
 import { FutureverseAuthProvider } from '@futureverse/auth-react';
-import { AuthUiProvider, DefaultTheme } from '@futureverse/auth-ui';
+import dynamic from 'next/dynamic';
+import { DefaultTheme } from '@futureverse/auth-ui';
+
+const AuthUiProvider = dynamic(
+  () => import('@futureverse/auth-ui').then(mod => mod.AuthUiProvider),
+  { ssr: false }
+);
 import { createConfig, http } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';
 

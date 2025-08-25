@@ -23,6 +23,21 @@ type PagesPageConfig = {
   }
 }
 
+type LayoutConfig<Route extends LayoutRoutes = LayoutRoutes> = {
+  default: React.ComponentType<LayoutProps<Route>> | ((props: LayoutProps<Route>) => React.ReactNode | Promise<React.ReactNode> | never | void | Promise<void>)
+  generateStaticParams?: (props: { params: ParamMap[Route] }) => Promise<any[]> | any[]
+  generateMetadata?: (
+    props: { params: Promise<ParamMap[Route]> } & any,
+    parent: ResolvingMetadata
+  ) => Promise<any> | any
+  generateViewport?: (
+    props: { params: Promise<ParamMap[Route]> } & any,
+    parent: ResolvingViewport
+  ) => Promise<any> | any
+  metadata?: any
+  viewport?: any
+}
+
 
 
 
@@ -66,4 +81,8 @@ type PagesPageConfig = {
 
 
 
-
+// Validate ..\..\app\layout.tsx
+{
+  const handler = {} as typeof import("..\\..\\app\\layout.js")
+  handler satisfies LayoutConfig<"/">
+}

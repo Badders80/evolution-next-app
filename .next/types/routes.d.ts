@@ -3,7 +3,7 @@
 
 type AppRoutes = never
 type PageRoutes = "/" | "/EnhancedMyStable.example" | "/Home" | "/MyStable" | "/MyStableDemo" | "/_app"
-type LayoutRoutes = never
+type LayoutRoutes = "/"
 type RedirectRoutes = never
 type RewriteRoutes = never
 type Routes = AppRoutes | PageRoutes | LayoutRoutes | RedirectRoutes | RewriteRoutes
@@ -22,6 +22,7 @@ interface ParamMap {
 export type ParamsOf<Route extends Routes> = ParamMap[Route]
 
 interface LayoutSlotMap {
+  "/": never
 }
 
 

@@ -3,7 +3,6 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { FutureverseAuthProvider } from '@futureverse/auth-react';
 import { FutureverseAuthClient } from '@futureverse/auth-react/auth';
 import { 
-  AuthUiProvider, 
   DefaultTheme, 
   CustodialAuthButton,
   Avatar,
@@ -11,6 +10,12 @@ import {
   Card,
   Typography
 } from '@futureverse/auth-ui';
+import dynamic from 'next/dynamic';
+
+const AuthUiProvider = dynamic(
+  () => import('@futureverse/auth-ui').then(mod => mod.AuthUiProvider),
+  { ssr: false }
+);
 import { useAuth } from '@futureverse/auth-react';
 import { WagmiProvider, createConfig, http } from 'wagmi';
 import { mainnet, sepolia } from 'wagmi/chains';

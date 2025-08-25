@@ -3,7 +3,12 @@ import Navbar from '../components/Navbar';
 import { LoginButton, useAuth } from '../components/FutureverseAuthProvider';
 import { useAccount, useBalance } from 'wagmi';
 import { formatEther } from 'viem';
-import { Card, Button, Typography, Avatar } from '@futureverse/auth-ui';
+import dynamic from 'next/dynamic';
+
+const Card = dynamic(() => import('@futureverse/auth-ui').then(mod => mod.Card), { ssr: false });
+const Button = dynamic(() => import('@futureverse/auth-ui').then(mod => mod.Button), { ssr: false });
+const Typography = dynamic(() => import('@futureverse/auth-ui').then(mod => mod.Typography), { ssr: false });
+const Avatar = dynamic(() => import('@futureverse/auth-ui').then(mod => mod.Avatar), { ssr: false });
 
 /**
  * Enhanced MyStable Dashboard - Shows portfolio data with Tokinvest integration

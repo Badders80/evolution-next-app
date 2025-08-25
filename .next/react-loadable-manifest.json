@@ -600,5 +600,9 @@
   "..\\node_modules\\viem\\_esm\\utils\\signature\\recoverPublicKey.js -> @noble/curves/secp256k1": {
     "id": "..\\node_modules\\viem\\_esm\\utils\\signature\\recoverPublicKey.js -> @noble/curves/secp256k1",
     "files": []
+  },
+  "pages\\_app.tsx -> @futureverse/auth-ui": {
+    "id": "pages\\_app.tsx -> @futureverse/auth-ui",
+    "files": []
   }
 }
