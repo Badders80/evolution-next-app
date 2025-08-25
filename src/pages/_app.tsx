@@ -6,6 +6,8 @@ import { WagmiProvider } from 'wagmi';
 import { FutureverseAuthProvider } from '@futureverse/auth-react';
 import dynamic from 'next/dynamic';
 import { DefaultTheme } from '@futureverse/auth-ui';
+import type { AppProps } from 'next/app';
+import Providers from '../providers';
 
 const AuthUiProvider = dynamic(
   () => import('@futureverse/auth-ui').then(mod => mod.AuthUiProvider),
@@ -40,17 +42,11 @@ const authClient = {
   postLogoutRedirectUri: process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI || 'http://localhost:3000/',
 };
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <QueryClientProvider client={queryClient}>
-      <WagmiProvider config={wagmiConfig}>
-        <FutureverseAuthProvider authClient={authClient}>
-          <AuthUiProvider authClient={authClient} themeConfig={themeConfig}>
-            <Component {...pageProps} />
-          </AuthUiProvider>
-        </FutureverseAuthProvider>
-      </WagmiProvider>
-    </QueryClientProvider>
+    <Providers>
+      <Component {...pageProps} />
+    </Providers>
   );
 }
 

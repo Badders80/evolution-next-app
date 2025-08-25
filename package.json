@@ -31,21 +31,21 @@
     "tailwindcss": "^3.4.3",
     "typescript": "^5.4.5"
   },
-  "resolutions": {
-    "@polkadot/api": "10.13.1",
-    "@polkadot/util": "12.6.2",
-    "@polkadot/keyring": "12.6.2",
-    "@polkadot/util-crypto": "12.6.2",
-    "@polkadot/wasm-crypto": "7.4.1",
-    "@polkadot/wasm-bridge": "7.4.1",
-    "@polkadot/wasm-crypto-wasm": "7.4.1",
-    "@polkadot/wasm-util": "7.4.1",
-    "@polkadot/rpc-provider": "10.13.1",
-    "@polkadot/api-derive": "10.13.1",
-    "@polkadot/rpc-core": "10.13.1",
-    "@polkadot/types": "10.13.1",
-    "@polkadot/types-create": "10.13.1",
-    "@polkadot/types-codec": "10.13.1",
-    "@polkadot/types-known": "10.13.1"
-  }
+    "resolutions": {
+      "@polkadot/api": "10.13.1",
+      "@polkadot/util": "12.6.2",
+      "@polkadot/keyring": "12.6.2",
+      "@polkadot/util-crypto": "12.6.2",
+      "@polkadot/wasm-crypto": "7.4.1",
+      "@polkadot/wasm-bridge": "7.4.1",
+      "@polkadot/wasm-crypto-wasm": "7.4.1",
+      "@polkadot/wasm-util": "7.4.1",
+      "@polkadot/rpc-provider": "10.13.1",
+      "@polkadot/api-derive": "10.13.1",
+      "@polkadot/rpc-core": "10.13.1",
+      "@polkadot/types": "10.13.1",
+      "@polkadot/types-create": "10.13.1",
+      "@polkadot/types-codec": "10.13.1",
+      "@polkadot/types-known": "10.13.1"
+    }
 }
