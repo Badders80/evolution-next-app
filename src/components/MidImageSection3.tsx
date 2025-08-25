@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../assets/mare-foal.jpg';
+const img = '/mare-foal.jpg';
 
 /**
  * Third full‑width image with overlay used to separate content blocks.

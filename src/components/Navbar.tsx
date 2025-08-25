@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import logo from '../assets/2.png';
+const logo = '/2.png';
 import { LoginButton, useAuth } from './FutureverseAuthProvider';
 
 /**
@@ -20,10 +20,12 @@ export default function Navbar() {
         <button
           className="flex items-center space-x-2 focus:outline-none bg-transparent border-none p-0 m-0"
           onClick={() => {
-            if (window.location.pathname !== '/') {
+            if (typeof window !== 'undefined' && window.location.pathname !== '/') {
               window.location.href = '/';
             } else {
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              if (typeof window !== 'undefined') {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }
           }}
         >
@@ -34,7 +36,9 @@ export default function Navbar() {
           <button 
             className="hover:text-gold transition-colors bg-transparent border-none text-white cursor-pointer"
             onClick={() => {
-              window.location.replace('/#mission');
+              if (typeof window !== 'undefined') {
+                window.location.replace('/#mission');
+              }
             }}
           >
             Our Mission
@@ -42,7 +46,9 @@ export default function Navbar() {
           <button 
             className="hover:text-gold transition-colors bg-transparent border-none text-white cursor-pointer"
             onClick={() => {
-              window.location.replace('/#about');
+              if (typeof window !== 'undefined') {
+                window.location.replace('/#about');
+              }
             }}
           >
             About
@@ -50,7 +56,9 @@ export default function Navbar() {
           <button 
             className="hover:text-gold transition-colors bg-transparent border-none text-white cursor-pointer"
             onClick={() => {
-              window.location.replace('/#innovation');
+              if (typeof window !== 'undefined') {
+                window.location.replace('/#innovation');
+              }
             }}
           >
             Innovation
@@ -95,7 +103,9 @@ export default function Navbar() {
             className="block text-left bg-transparent border-none text-white cursor-pointer w-full"
             onClick={() => {
               setOpen(false);
-              window.location.replace('/#mission');
+              if (typeof window !== 'undefined') {
+                window.location.replace('/#mission');
+              }
             }}
           >
             Our Mission
@@ -104,7 +114,9 @@ export default function Navbar() {
             className="block text-left bg-transparent border-none text-white cursor-pointer w-full"
             onClick={() => {
               setOpen(false);
-              window.location.replace('/#about');
+              if (typeof window !== 'undefined') {
+                window.location.replace('/#about');
+              }
             }}
           >
             About
@@ -113,7 +125,9 @@ export default function Navbar() {
             className="block text-left bg-transparent border-none text-white cursor-pointer w-full"
             onClick={() => {
               setOpen(false);
-              window.location.replace('/#innovation');
+              if (typeof window !== 'undefined') {
+                window.location.replace('/#innovation');
+              }
             }}
           >
             Innovation

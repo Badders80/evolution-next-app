@@ -26,10 +26,10 @@ const wagmiConfig = createConfig({
 
 // Create auth client
 const authClient = new FutureverseAuthClient({
-  clientId: import.meta.env.VITE_FUTUREVERSE_CLIENT_ID || 'Ug3k_XbN1wXZlPDvgK_Ge',
-  environment: import.meta.env.VITE_FUTUREVERSE_ENVIRONMENT || 'staging',
-  redirectUri: import.meta.env.VITE_REDIRECT_URI || 'http://localhost:5173/',
-  postLogoutRedirectUri: import.meta.env.VITE_POST_LOGOUT_REDIRECT_URI || 'http://localhost:5173/',
+  clientId: process.env.NEXT_PUBLIC_FUTUREVERSE_CLIENT_ID || 'Ug3k_XbN1wXZlPDvgK_Ge',
+  environment: 'staging',
+  redirectUri: process.env.NEXT_PUBLIC_REDIRECT_URI || 'http://localhost:5173/',
+  postLogoutRedirectUri: process.env.NEXT_PUBLIC_POST_LOGOUT_REDIRECT_URI || 'http://localhost:5173/',
 });
 
 // Create query client
@@ -93,7 +93,9 @@ export function LoginButton({ onLogin, onLogout, children, label }: LoginButtonP
   const handleAuth = async () => {
     // If user is already signed in and this is "Enter MyStable", navigate to MyStable
     if (userSession && label === 'Enter MyStable') {
-      window.location.href = '/mystable';
+      if (typeof window !== 'undefined') {
+        window.location.href = '/mystable';
+      }
       return;
     }
     

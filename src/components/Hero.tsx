@@ -1,6 +1,6 @@
 import React from 'react';
-import heroBg from '../assets/Horse-Double-Black.png';
-import evolutionText from '../assets/Copy of Evolution Brand Kit (11 x 4 in).png';
+const heroBg = '/Horse-Double-Black.png';
+const evolutionText = '/Copy of Evolution Brand Kit (11 x 4 in).png';
 
 /**
  * Full‑screen hero section with a darkened background image and

@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../assets/hero-horses.png';
+const img = '/hero-horses.png';
 
 /**
  * Full‑width closing image with no overlay or text. This

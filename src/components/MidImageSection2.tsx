@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../assets/racelegs.png';
+const img = '/racelegs.png';
 
 /**
  * Image section that is visually cropped at the top. Using

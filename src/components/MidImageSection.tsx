@@ -1,5 +1,5 @@
 import React from 'react';
-import img from '../assets/hooves-transition.jpg';
+const img = '/hooves-transition.jpg';
 
 /**
  * Simple full‑width image block used to separate sections. A dark

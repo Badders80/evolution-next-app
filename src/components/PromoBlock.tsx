@@ -1,6 +1,6 @@
 import React from 'react';
-import hostsWave from '../assets/hosts-wave.jpg';
-import hostsSunset from '../assets/hosts-sunset.jpg';
+const hostsWave = '/hosts-wave.jpg';
+const hostsSunset = '/hosts-sunset.jpg';
 
 /**
  * Promotional block highlighting Evolution Studios. It showcases two
