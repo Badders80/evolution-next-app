@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@futureverse/auth':
+        specifier: ^5.0.0
+        version: 5.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
       '@futureverse/auth-react':
         specifier: ^4.2.2
         version: 4.4.0(@tanstack/query-core@5.85.5)(@tanstack/react-query@5.85.5(react@18.2.0))(@types/react@18.3.24)(@wagmi/connectors@5.9.5(@types/react@18.3.24)(@wagmi/core@2.20.0(@tanstack/query-core@5.85.5)(@types/react@18.3.24)(react@18.2.0)(typescript@5.9.2)(use-sync-external-store@1.4.0(react@18.2.0))(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76)))(bufferutil@4.0.9)(react@18.2.0)(typescript@5.9.2)(use-sync-external-store@1.4.0(react@18.2.0))(utf-8-validate@5.0.10)(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76))(zod@3.25.76))(@wagmi/core@2.20.0(@tanstack/query-core@5.85.5)(@types/react@18.3.24)(react@18.2.0)(typescript@5.9.2)(use-sync-external-store@1.4.0(react@18.2.0))(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76)))(bufferutil@4.0.9)(react@18.2.0)(typescript@5.9.2)(utf-8-validate@5.0.10)(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76))(zod@3.25.76)
@@ -170,6 +173,9 @@ packages:
       typescript:
         optional: true
 
+  '@futureverse/auth-core@1.0.0':
+    resolution: {integrity: sha512-gFeCKv1GGRpBEBAKMH8wOc5VPEFY62YfXagaJMenMBbFev1eooqrLLZy6skoTI2tvBAHzBJTySxOb+ycp5RmLA==}
+
   '@futureverse/auth-react@4.4.0':
     resolution: {integrity: sha512-C/4g/G6ziW0ydfKbRu+Chq0tA8nHAl0vQGmfuTthH1ZVrDuGIhDSZnU6sdMiqTjz13Q3Lk6ZZzEyZh29nVlRbw==}
     peerDependencies:
@@ -186,6 +192,9 @@ packages:
     resolution: {integrity: sha512-yz1nDkqFTOeWtrpp3EBQDsK4d9bzjFR7MSsh8CntIqKL/zIPv476bgrwtgB22DBQSZnN5Khmn+UkoiFdWcPxWQ==}
     peerDependencies:
       viem: 2.x
+
+  '@futureverse/auth@5.0.0':
+    resolution: {integrity: sha512-XzeEFeI9swxiO/tnN3/hc/gfj6mdsDUKDBbqR8wEkEnYy90AIgTrTHmdlvL+OzOlS21eCr8OLANv0/25RcY0Qg==}
 
   '@futureverse/signer-core@0.3.0':
     resolution: {integrity: sha512-vtJ8kiUKWmny2x5T70zioFe4wlTUoIn803TY9sRPEbOAaNIl2y8Iwb/gCZqcnT8Yza890p5nnIRSPFTR7wg62A==}
@@ -3081,6 +3090,14 @@ snapshots:
     optionalDependencies:
       typescript: 5.9.2
 
+  '@futureverse/auth-core@1.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@futureverse/signer-core': 0.3.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+
   ? '@futureverse/auth-react@4.4.0(@tanstack/query-core@5.85.5)(@tanstack/react-query@5.85.5(react@18.2.0))(@types/react@18.3.24)(@wagmi/connectors@5.9.5(@types/react@18.3.24)(@wagmi/core@2.20.0(@tanstack/query-core@5.85.5)(@types/react@18.3.24)(react@18.2.0)(typescript@5.9.2)(use-sync-external-store@1.4.0(react@18.2.0))(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76)))(bufferutil@4.0.9)(react@18.2.0)(typescript@5.9.2)(use-sync-external-store@1.4.0(react@18.2.0))(utf-8-validate@5.0.10)(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76))(zod@3.25.76))(@wagmi/core@2.20.0(@tanstack/query-core@5.85.5)(@types/react@18.3.24)(react@18.2.0)(typescript@5.9.2)(use-sync-external-store@1.4.0(react@18.2.0))(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76)))(bufferutil@4.0.9)(react@18.2.0)(typescript@5.9.2)(utf-8-validate@5.0.10)(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76))(zod@3.25.76)'
   : dependencies:
       '@futureverse/auth': 4.4.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)(viem@2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76))
@@ -3171,6 +3188,17 @@ snapshots:
       oidc-client-ts: 3.3.0
       viem: 2.35.1(bufferutil@4.0.9)(typescript@5.9.2)(utf-8-validate@5.0.10)(zod@3.25.76)
       zod: 3.25.76
+    transitivePeerDependencies:
+      - bufferutil
+      - supports-color
+      - utf-8-validate
+
+  '@futureverse/auth@5.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)':
+    dependencies:
+      '@futureverse/auth-core': 1.0.0(bufferutil@4.0.9)(utf-8-validate@5.0.10)
+      cookie-storage: 6.1.0
+      jwt-decode: 4.0.0
+      oidc-client-ts: 3.3.0
     transitivePeerDependencies:
       - bufferutil
       - supports-color

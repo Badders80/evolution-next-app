@@ -10,6 +10,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@futureverse/auth": "^5.0.0",
     "@futureverse/auth-react": "^4.2.2",
     "@futureverse/auth-ui": "^0.17.0",
     "@polkadot/api": "12.4.1",
