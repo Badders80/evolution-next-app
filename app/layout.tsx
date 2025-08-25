@@ -1,4 +1,5 @@
 import './globals.css';
+import { ReactQueryProvider } from '@/providers/ReactQueryProvider';
 import { Providers } from './providers';
 
 export const metadata = {
@@ -10,9 +11,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Providers>
-          {children}
-        </Providers>
+        <ReactQueryProvider>
+          <Providers>
+            {children}
+          </Providers>
+        </ReactQueryProvider>
       </body>
     </html>
   );
